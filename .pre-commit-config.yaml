@@ -8,3 +8,5 @@ repos:
         # Optional: only run on these folders
         # files: ^(src)/
         # exclude: ^(src/legacy|.*test_data)
+
+      - id: ruff-format 
