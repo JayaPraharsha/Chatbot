@@ -1,11 +1,5 @@
-def func(a,b): 
+def func(a, b):
     return True
 
 
-
-
-
-
-
-
-print(func(10,90))
+print(func(10, 90))
