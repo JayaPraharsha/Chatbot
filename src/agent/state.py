@@ -1,24 +1,33 @@
-from typing import List, TypedDict
+import operator
+from typing import Annotated, List, TypedDict
 
-from langchain.schema import Document
+from schemas import SentenceSpan
 
 
 class InputState(TypedDict):
     user_query: str
 
 
-class PreRetrievalNodeOutput(TypedDict):
+class RetrieveExpandOutput(TypedDict):
     expanded_query: str
 
 
-class RetrievalNodeOutput(TypedDict):
-    retrieved_documents: List[Document]
+class RetrieveRerankOutput(TypedDict):
+    reranked_ids: List[str]
 
 
-class PostRetrievalNodeOutput(TypedDict):
-    reranked_documents: List[Document]
-    compressed_context: str
+class ContentExtractorOutput(TypedDict):
+    extracted_documents: Annotated[List[SentenceSpan], operator.add]
 
 
-class OverallState(TypedDict):
-    final_response: str
+class OutputState(TypedDict):
+    response: str
+
+
+__all__ = [
+    "InputState",
+    "OutputState",
+    "ContentExtractorOutput",
+    "RetrieveRerankOutput",
+    "RetrieveExpandOutput",
+]
