@@ -14,7 +14,6 @@ When generating answers to questions about troubleshooting or fixing issues, ens
 generator_human_message = HumanMessagePromptTemplate.from_template("""
 You are a friendly customer support chatbot. In your response, include any links that can be useful to the customer.
 Make sure to include links to other articles, specific Wix resources, or pertinent external resources.
-Whenever needed, embed relevant links within the content, not at the end.
 Here's the question: 
 {Question}
 Answer the question only based on the retrieved documents:

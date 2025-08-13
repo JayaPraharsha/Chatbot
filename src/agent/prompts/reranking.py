@@ -8,7 +8,7 @@ system_message = SystemMessagePromptTemplate.from_template("""
 You are a document reranker.  You receive a user query, and and five Document summaries.
 You rerank documents based on their relevance to the user query. 
 Your job is to rank these documents from most to least relevant.
-You should also provide a single concise justification (2-3 sentences) for each document explaining its relevance in the context of the query.                                                       
+Assign the value 1000, if a document is irrelevant.
 """)
 
 human_message = HumanMessagePromptTemplate.from_template("""

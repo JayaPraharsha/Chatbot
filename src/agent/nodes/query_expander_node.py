@@ -1,8 +1,8 @@
-from db.access import get_summary_by_id
-from llms import query_expander_llm
-from prompts.query_expansion import query_expansion_prompt
-from schemas import ExpansionSchema
-from vector_db import get_vectorstore
+from agent.db.access import get_summary_by_id
+from agent.llms import query_expander_llm
+from agent.prompts.query_expansion import query_expansion_prompt
+from agent.schemas import ExpansionSchema
+from agent.vector_db.vectorstore import get_vectorstore
 
 query_expander_llm = query_expander_llm.with_structured_output(ExpansionSchema)
 query_expansion_chain = query_expansion_prompt | query_expander_llm

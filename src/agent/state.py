@@ -1,33 +1,36 @@
 import operator
-from typing import Annotated, List, TypedDict
+from typing import Annotated, List
 
-from schemas import SentenceSpan
+from typing_extensions import TypedDict
+
+
+def merge_dicts(a: dict, b: dict) -> dict:
+    if a is None:
+        a = {}
+
+    if b is None:
+        return a
+
+    return {**a, **b}
+
+
+class AgentState(TypedDict):
+    user_query: str
+    response: str
+    expanded_query: str
+    reranked_ids: List[str]
+    extracted_documents: Annotated[list, operator.add]
+    metrics: Annotated[dict, merge_dicts]
 
 
 class InputState(TypedDict):
     user_query: str
 
 
-class RetrieveExpandOutput(TypedDict):
-    expanded_query: str
-
-
-class RetrieveRerankOutput(TypedDict):
-    reranked_ids: List[str]
-
-
-class ContentExtractorOutput(TypedDict):
-    extracted_documents: Annotated[List[SentenceSpan], operator.add]
+class ContentExtractionState(TypedDict):
+    content_id: str
 
 
 class OutputState(TypedDict):
     response: str
-
-
-__all__ = [
-    "InputState",
-    "OutputState",
-    "ContentExtractorOutput",
-    "RetrieveRerankOutput",
-    "RetrieveExpandOutput",
-]
+    metrics: dict

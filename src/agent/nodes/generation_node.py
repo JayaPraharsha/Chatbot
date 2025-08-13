@@ -1,5 +1,5 @@
-from llms import generator_llm
-from prompts.generation import generation_prompt
+from agent.llms import generator_llm
+from agent.prompts.generation import generation_prompt
 
 generation_chain = generation_prompt | generator_llm
 

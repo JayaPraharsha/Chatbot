@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: rag_wixqa
+Version: 0.1
+Summary: RAG on WixQA dataset
+Requires-Python: >=3.11
+Requires-Dist: langchain>=0.3.26
+Requires-Dist: langchain_openai>=0.3.28
+Requires-Dist: langchain_weaviate>=0.0.5
+Requires-Dist: langgraph_api>=0.2.129
+Requires-Dist: langgraph>=0.6.4
+Requires-Dist: nltk>=3.9.1
+Requires-Dist: evaluate>=0.4.5
+Requires-Dist: datasets>=4.0.0
+Requires-Dist: rouge_score>=0.1.2
+Requires-Dist: sacrebleu>=2.5.1
+Requires-Dist: sqlalchemy>=2.0.41
+Requires-Dist: sqlmodel>=0.0.24
+Requires-Dist: weaviate-client>=4.16.4
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: arc>=1.0
+Requires-Dist: fastapi
+Requires-Dist: psycopg2
+Requires-Dist: langchain_community>=0.3.27

@@ -1,8 +1,10 @@
-from db.access import get_content_by_id, get_title_by_id
-from llms import content_extraction_llm
 from nltk.tokenize import sent_tokenize
-from prompts.content_extraction import extraction_prompt
-from schemas import ContentExtractionSchema
+
+from agent.db.access import get_content_by_id, get_title_by_id
+from agent.db.db_config import init_db
+from agent.llms import content_extraction_llm
+from agent.prompts.content_extraction import extraction_prompt
+from agent.schemas import ContentExtractionSchema
 
 content_extraction_llm = content_extraction_llm.with_structured_output(ContentExtractionSchema)
 content_extraction_chain = extraction_prompt | content_extraction_llm
@@ -15,8 +17,9 @@ def convert_to_sentences(content: str):
 
 
 def extract_content(content_id: str, query: str) -> tuple:
+    init_db()
     extracted_content = get_title_by_id(content_id) + " \n "
-    content = get_content_by_id(id)
+    content = get_content_by_id(content_id)
     numbered_content = convert_to_sentences(content)
     result = content_extraction_chain.invoke(
         {"query": query, "numbered_sentences": numbered_content}

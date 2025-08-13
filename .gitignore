@@ -5,3 +5,5 @@ commands.txt
 db
 Notebooks
 weaviate
+./src/agent/rag_wixqa.egg-info
+./src/agent/wixqa_rag_agent.egg-info

@@ -8,9 +8,9 @@ class RerankerSchema(BaseModel):
         description=" A string, which looks like a python list of integers, containing the indexes of the documents sorted in descending order of their relevance.",
         examples=["[1, 2, 3, 4, 5,]"],
     )
-    justification: list[str] = Field(
-        description="Concise statments that provide justification for the given ordered ranks of documents."
-    )
+    # justification: list[str] = Field(
+    #     description="Concise statments that provide justification for the given ordered ranks of documents."
+    # )
 
 
 class ExpansionSchema(BaseModel):
@@ -20,12 +20,12 @@ class ExpansionSchema(BaseModel):
             "with added relevant keywords, targeted for better keyword and semantic search."
         )
     )
-    justification: str = Field(
-        description=(
-            "A concise rationale explaining why the expanded query differs from the original, "
-            "highlighting key terms, context, or intent that informed the expansion."
-        )
-    )
+    # justification: str = Field(
+    #     description=(
+    #         "A concise rationale explaining why the expanded query differs from the original, "
+    #         "highlighting key terms, context, or intent that informed the expansion."
+    #     )
+    # )
 
 
 class SentenceSpan(BaseModel):
@@ -44,4 +44,24 @@ class ContentExtractionSchema(BaseModel):
             "Sentence indices are 1-based and refer to the position of sentences in the original text."
             "Sentence i is immediately followed by sentence i+1."
         ),
+    )
+
+
+class FactualityScore(BaseModel):
+    """Schema for model output measuring factuality."""
+
+    factuality_score: float = Field(
+        ge=0.0,
+        le=1.0,
+        description="Factuality score, between 0 and 1 with exactly three decimal places. Higher means more factually correct.",
+    )
+
+
+class ContextRecallScore(BaseModel):
+    """Schema for model output measuring context recall."""
+
+    context_recall_score: float = Field(
+        ge=0.0,
+        le=1.0,
+        description="Context recall score, between 0 and 1 with exactly three decimal places. Higher means better coverage of the given context.",
     )

@@ -1,10 +1,10 @@
 from typing import List
 
-from db.access import get_summary_by_id
-from llms import reranker_llm
-from prompts.reranking import reranker_prompt
-from schemas import RerankerSchema
-from vector_db import get_vectorstore
+from agent.db.access import get_summary_by_id
+from agent.llms import reranker_llm
+from agent.prompts.reranking import reranker_prompt
+from agent.schemas import RerankerSchema
+from agent.vector_db.vectorstore import get_vectorstore
 
 reranker_llm = reranker_llm.with_structured_output(RerankerSchema)
 reranker_chain = reranker_prompt | reranker_llm

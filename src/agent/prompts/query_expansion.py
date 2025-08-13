@@ -11,7 +11,8 @@ You have the flexibility to choose the number of keywords to add to the original
 Don't include keywords from all the documents. Your goal is to filter only the relevant documents, and derive context and keywords from them, and include them in the user query.
 Don't add noise in the user query.
 Do not invent any new keywords outside the context. If you think that you can create new keywords/phrases, rely only on the document content.
-Output ONLY the expanded query and the justification.
+The keywords must be comma separated. The keywords should start in a new line, separate from the original query.
+Output ONLY the expanded query.
 """)
 
 

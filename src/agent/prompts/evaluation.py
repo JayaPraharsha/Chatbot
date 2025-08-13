@@ -1,4 +1,11 @@
-facutality_evaluation_prompt = """
+from langchain.prompts import (
+    ChatPromptTemplate,
+    HumanMessagePromptTemplate,
+    PromptTemplate,
+    SystemMessagePromptTemplate,
+)
+
+facutality_evaluation_s_prompt = """
 
 ### ROLE
 You are a Factual Alignment Expert. Your job is
@@ -44,7 +51,7 @@ information transfer
 5. Provide a brief explanation focusing on factuality
 """
 
-context_recall_evaluation_prompt = """
+context_recall_evaluation_s_prompt = """
 ### ROLE
 You are a Context Evaluation Expert. Your
 job is to assess how well a retrieved context contains the essential information present in a ground
@@ -89,3 +96,46 @@ information present in the retrieved context
 5. Assign a rating (0-1) based on information coverage
 and relevance
 """
+
+
+factuality_human_template = PromptTemplate(
+    template="""
+Question: {question}
+Ground Truth Answer: {ground_truth}
+AI Response: {ai_response}
+
+Provide the factuality evaluation according to the system instructions.
+""",
+    input_variables=["question", "ground_truth", "ai_response"],
+)
+
+
+context_recall_human_template = PromptTemplate(
+    template="""
+Question: {question}
+Ground Truth Answer: {ground_truth}
+Retrieved Context: {context}
+
+Provide the context recall evaluation according to the system instructions.
+""",
+    input_variables=["question", "ground_truth", "context"],
+)
+
+
+facutality_evaluation_system_prompt = SystemMessagePromptTemplate.from_template(
+    facutality_evaluation_s_prompt
+)
+context_recall_evaluation_system_prompt = SystemMessagePromptTemplate.from_template(
+    context_recall_evaluation_s_prompt
+)
+
+factuality_human_message = HumanMessagePromptTemplate(prompt=factuality_human_template)
+context_recall_human_message = HumanMessagePromptTemplate(prompt=context_recall_human_template)
+
+
+factuality_evaluation_prompt = ChatPromptTemplate.from_messages(
+    [facutality_evaluation_system_prompt, factuality_human_message]
+)
+context_recall_evaluation_prompt = ChatPromptTemplate.from_messages(
+    [context_recall_evaluation_system_prompt, context_recall_human_message]
+)

@@ -1,0 +1,17 @@
+langchain>=0.3.26
+langchain_openai>=0.3.28
+langchain_weaviate>=0.0.5
+langgraph>=0.6.4
+nltk>=3.9.1
+evaluate>=0.4.5
+datasets>=4.0.0
+rouge_score>=0.1.2
+sacrebleu>=2.5.1
+sqlalchemy>=2.0.41
+sqlmodel>=0.0.24
+weaviate-client>=4.16.4
+pydantic>=2.11.7
+arc>=1.0
+fastapi
+psycopg2
+langchain_community>=0.3.27
