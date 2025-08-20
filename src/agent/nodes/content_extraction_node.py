@@ -1,3 +1,4 @@
+import nltk
 from nltk.tokenize import sent_tokenize
 
 from agent.db.access import get_content_by_id, get_title_by_id
@@ -11,6 +12,7 @@ content_extraction_chain = extraction_prompt | content_extraction_llm
 
 
 def convert_to_sentences(content: str):
+    nltk.data.path.append("/usr/local/nltk_data")
     sentences = sent_tokenize(content.strip())
     numbered_content = [f"{i + 1}. {s}" for i, s in enumerate(sentences)]
     return numbered_content

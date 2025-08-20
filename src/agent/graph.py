@@ -8,6 +8,7 @@ from agent.nodes.generation_node import generate_answer
 from agent.nodes.query_expander_node import retrieve_and_expand_query
 from agent.nodes.reranker_node import retrieve_and_rerank
 from agent.state import AgentState, ContentExtractionState, InputState, OutputState
+from agent.vector_db.vectorstore import close_client
 
 
 def retrieve_and_expand_node(state: InputState) -> AgentState:
@@ -20,6 +21,7 @@ def retrieve_and_expand_node(state: InputState) -> AgentState:
 def retrieve_and_rerank_node(state: AgentState) -> AgentState:
     exp_query = state["expanded_query"]
     reranked_ids = retrieve_and_rerank(exp_query)
+    close_client()
     return {"reranked_ids": reranked_ids}
 
 
@@ -56,7 +58,6 @@ def evaluation_calls_func(state: AgentState):
     ]
 
 
-# , "expanded_query": state["expanded_query"]
 def evaluation_node(state: AgentState) -> OutputState:
     metric = state["metric"]
     expanded_question = state["expanded_query"]
@@ -93,3 +94,8 @@ def create_research_graph():
 def create_compiled_graph():
     graph = create_research_graph()
     return graph.compile()
+
+
+def answer_query(query: str):
+    graph = create_compiled_graph()
+    return graph.invoke({"user_query": query})

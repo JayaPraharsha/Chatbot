@@ -10,9 +10,11 @@ rouge_score>=0.1.2
 sacrebleu>=2.5.1
 sqlalchemy>=2.0.41
 sqlmodel>=0.0.24
-weaviate-client>=4.16.4
+weaviate-client>=4.0.0
 pydantic>=2.11.7
-arc>=1.0
 fastapi
-psycopg2
+uvicorn
+psycopg2-binary
 langchain_community>=0.3.27
+llama-index>=0.13.2
+llama-index-vector-stores-weaviate>=1.4.0

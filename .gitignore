@@ -3,7 +3,12 @@ environment
 data
 commands.txt
 db
-Notebooks
-weaviate
+Notebooks/
+logs/
+weaviate/
 ./src/agent/rag_wixqa.egg-info
 ./src/agent/wixqa_rag_agent.egg-info
+backup.sql
+deploy.py
+Notebooks_aws/
+*.yaml

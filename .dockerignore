@@ -1,0 +1,16 @@
+Notebooks/
+Notebooks_aws/
+logs/
+*.ipynb
+data/
+weaviate/
+.gitignore
+.ruff_cache/
+environment/
+.pre-commit-config.yaml
+backup.sql
+.env
+deploy.py
+*.yaml
+Dockerfile
+README.md

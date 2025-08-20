@@ -2,8 +2,8 @@
     "dependencies": [
         "."
     ],
-    "graphs": {
+    "graphs": { 
         "rag_wixqa": "agent.graph:create_compiled_graph"
     },
-    "env": ".env"
+    "env": "./.env"
 } 
