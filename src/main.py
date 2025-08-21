@@ -17,8 +17,9 @@ def answer_user_query(query: Query):
     return {"answer": answer}
 
 
-app.include_router(router)
+@router.get("/health")
+def health_check():
+    return "Healthy", 200
 
-# if __name__ == "__main__":
-#     print("Starting server...")
-#     uvicorn.run("main:app", host="0.0.0.0", port=8001, reload=True)
+
+app.include_router(router)
