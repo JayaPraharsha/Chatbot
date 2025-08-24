@@ -1,4 +1,5 @@
 from fastapi import APIRouter, FastAPI
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from agent.graph import answer_query
@@ -19,7 +20,7 @@ def answer_user_query(query: Query):
 
 @router.get("/health")
 def health_check():
-    return "Healthy", 200
+    return JSONResponse(status_code=200, content={"message": "Everything is good here 👀"})
 
 
 app.include_router(router)
